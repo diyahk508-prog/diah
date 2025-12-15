@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produk - UMKM Kopi Nusantara</title>
+    <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+    <header>
+        <h1>Kopi Nusantara</h1>
+        <nav>
+            <ul>
+              <li><a href="index.html">Beranda</a></li>
+              <li><a href="tentang.html">Tentang kami</a></li>
+              <li><a href="produk.html">Produk</a></li>
+              <li><a href="galeri.html">Galeri</a></li>
+              <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+          </nav>
+        </header>
+
+        <main>
+            <h2>Produk Unggulan Kami</h2>
+            <p>Berikut daftar produk kopi Nusantara yang kami sediakan:</p>
+
+            <table border="1" cellspacing="0" cellpadding="8">
+              <thead>
+                <tr>
+                    <th>Produk</th>
+                    <th>Ukuran</th>
+                    <th>Harga</th>
+                    <th>Jenis Kopi</th>
+                </tr>
+              </thead>
+                
+                <tbody>
+                  <tr>
+                    <td>Kopi Arabika Gayo</td>
+                    <td>250g</td>
+                    <td>Rp 45.000</td>
+                    <td>Arabika</td>
+                  </tr>
+                  <tr>
+                    <td>Kopi Robusta Temanggung</td>
+                    <td>250g</td>
+                    <td>Rp 38.000</td>
+                    <td>Robusta</td>
+                  </tr>
+                  <tr>
+                    <td>Kopi Riau</td>
+                    <td>250g</td>
+                    <td>Rp 42.000</td>
+                    <td>Liberika</td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="text-align: center; background-color: #eee;">
+                        Semua harga sudah termasuk PPN
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="container my-5">
+                  <div class="row g-4">
+                    <div class="col-md-4">
+                      <div class="card">
+                        <img src="images/produk-1.jpeg" class="card-img-top" alt="Produk 1">
+                        <div class="card-body">
+                          <h5 class="card-title">Produk 1</h5>
+                          <p class="card-text">Deskripsi singkat produk.</p>
+                          <a href="#" class="btn btn-primary">Beli sekarang</a>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card">
+                      <img src="images/produk-1.jpeg" alt="Produk UMKM">
+                      <h3>Kopi Arabika Gayo</h3>
+                      <p>
+                   Kopi Khas Aceh dengan aroma segar dan rasa asam yang halus.
+                  </p>
+                  
+                  <h3>Rating Produk: <span
+                  id="hasil-rating"></span></h3> <script>
+                    let rating = 4;
+
+                    if (rating >= 4.5) {
+                      document.getElementById("hasil-rating").textContent = "★★★★★ Sangat Disarankan"; 
+                    } else if (rating >= 3) {
+                      document.getElementById("hasil-rating").textContent = "★★★ Rekomendasi Biasa";
+                    } else {
+                      document.getElementById("hasil-rating").textContent = "★ Tidak Direkomendasikan";
+                    }
+
+
+                  </script>
+                  </div>
+
+                <h3>Dengarkan cerita kami</h3>
+                <audio controls>
+                    <source src="audio/cerita-umkm.mp3" type="audio/mpeg">
+                    Audio tidak tersedia di browser anda.
+                </audio>
+
+                <video width="200" height="100" controls>
+                    <source src="videos/video.mp4" type="video/mp4">
+                    Browser anda tidak mendukung video.
+                </video>
+               </main>
+
+                <h3>Daftar Whislist Produk</h3>
+
+                <form>
+                  <input type="text" id="produkInput" placeholder="Nama Produk..."
+                />
+                  <p>Preview: <span id="previewProduk"></span></p>
+                  <button id="tambahBtn">Tambah Produk</button>
+                </form>
+
+                <ul id="daftarProduk"></ul>
+
+                <hr />
+
+                <label for="temaSelect">Pilih Tema Warna: </label>
+                <select id="temaSelect">
+                  <option value="white">Putih</option>
+                  <option value="lightblue">Biru Muda</option>
+                  <option value="lightyellow">Kuning Muda</option>
+                  
+                </select>
+
+               <footer>
+                <p>&copy; 2025 Kopi Nusantara</p>
+              </footer>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  const produkInput = document.getElementById("produkInput");
+                  const tambahBtn = document.getElementById("tambahBtn");
+                  const daftarProduk = document.getElementById("daftarProduk");
+                  const previewProduk = document.getElementById("previewProduk");
+                  const temaSelect = document.getElementById("temaSelect");
+
+                  tambahBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    const namaProduk = produkInput.value.trim();
+                    if (namaProduk !== "") {
+                      const li = document.createElement("li");
+                      li.textContent = namaProduk;
+                      
+                      li.addEventListener("mouseover", () =>
+                    li.style.backgroundColor = "#e0e0e0");
+                      li.addEventListener("mouseout", () => li.style.backgroundColor = "");
+
+                      li.addEventListener("dblclick", () => {
+                        if (confirm("Yakin ingin menghapus produk ini?")) {
+                          li.remove();
+                        }
+                      });
+
+                      daftarProduk.appendChild(li);
+                      produkInput.value = "";
+                      previewProduk.textContent = "";
+                    }
+                  });
+
+                  produkInput.addEventListener("keyup", function () {
+                    previewProduk.textContent = produkInput.value;
+                  });
+
+                  temaSelect.addEventListener("change", function () {
+                    document.body.style.backgroundColor = temaSelect.value;
+                  });
+                });
+              </script>
+              <script>
+                $(document).ready(function(){
+                   $(".btn-primary").click(function(e){ 
+                    e.preventDefault(); 
+                    alert("Terima kasih, produk akan segera diproses!"); 
+
+                }); });
+              </script>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            </body>
+            </html>
